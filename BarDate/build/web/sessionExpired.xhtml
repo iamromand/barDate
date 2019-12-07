@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedOutLayout.xhtml">
+            <ui:define name="page-title">Session Expired</ui:define>
+            <ui:define name="content">
+                Your session has expired. Please <h:outputLink value="login.xhtml">login</h:outputLink> to start using the app again.
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

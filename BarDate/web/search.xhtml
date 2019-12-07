@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedInFullyLayout.xhtml">
+            <ui:define name="page-title">Search</ui:define>
+            <ui:define name="content">
+                <c:choose>
+                    <c:when test="${not empty param.pid }">
+                        <div class="full-profile">
+                            <ui:include src="personInSearch.xhtml">
+                                <ui:param name="person" value="#{searchResults.getPerson(param.pid)}" />
+                            </ui:include>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${empty searchResults.people}">
+                                Your search results seem so empty. Our pool of users is still small, so we suggest you to expand your search criteria, or try again later.
+                            </c:when>
+                            <c:otherwise>
+                                <div class="full-results">
+                                    <c:forEach var="personobj" items="#{searchResults.people}">
+                                        <ui:include src="personInSearch.xhtml">
+                                            <ui:param name="person" value="#{personobj}" />
+                                        </ui:include>
+                                    </c:forEach>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:otherwise>
+                </c:choose>
+
+                <h:outputLink class="backButton" value="dashboard.xhtml">Back to dashboard</h:outputLink><br />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

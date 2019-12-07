@@ -1,0 +1,56 @@
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/detailsLayout.xhtml">
+            <ui:define name="page-title">Preferred Info</ui:define>
+            <ui:define name="detailsFields">
+                    <h:panelGrid class="table-preferred-info range-container" columns="1">
+
+                        <f:event listener="#{profileHandlerBean.validateAges}" type="postValidate" />
+                        
+                        <h2>Who would you want to date?</h2>
+                        
+                        <h:selectManyCheckbox id="pGenderInputeText" value="#{profileHandlerBean.pgender}" required="true" requiredMessage="Please select genders you prefer">
+                            <f:selectItems  value="#{profileHandlerBean.listOfGenders.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                        </h:selectManyCheckbox>
+
+                        <h:selectOneRadio id="pSmokingInputText" value="#{profileHandlerBean.psmoking}" required="true" requiredMessage="Please state your preference in regards of smoking">
+                            <f:selectItem itemValue="smoking" itemLabel="Smoking" />
+                            <f:selectItem itemValue="nonsmoking" itemLabel="Non Smoking" />
+                            <f:selectItem itemValue="both" itemLabel="Both" />
+                        </h:selectOneRadio>
+                        
+                        <h:outputText value="Maximum Distance (km)?" />
+                        <input type="range" name="max-radius-range" min="5" max="200" step="5" value="#{profileHandlerBean.pmaxradius}" class="range-input-max-radius-in-profile-view" />
+                        <output for="max-radius-range" class="for-range" onforminput="value = foo.valueAsNumber;" />
+
+                        <div jsf-id="header-and-input-wrapper-age" class="header-and-input-wrapper">
+                            <h:outputText value="Age range" />
+                            <h:selectOneMenu id="pMinAgeInputText" value = "#{profileHandlerBean.pminage}" class="select-min-age-in-profile-view"> 
+                                <f:selectItems  value="#{profileHandlerBean.listOfAges.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                            </h:selectOneMenu> 
+                            <h:selectOneMenu id="pMaxAgeInputText" value = "#{profileHandlerBean.pmaxage}" class="select-max-age-in-profile-view"> 
+                                <f:selectItems  value="#{profileHandlerBean.listOfAges.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                            </h:selectOneMenu> 
+                        </div>
+                    </h:panelGrid>
+                                        
+                        <h:inputText id="pMaxRadiusInputText" required="true" requiredMessage="Please select maximum radius" value="#{profileHandlerBean.pmaxradius}" class="input-max-radius-in-profile-view" />
+                        <h:message for="pGenderInputeText" styleClass="error" id="pGenderMessage" />
+                        <h:message for="pSmokingInputText" styleClass="error" id="pSmokingMessage" />
+                        <h:message for="pMaxRadiusInputText" styleClass="error" id="pMaxRadiusMessage" />
+                        <h:message for="pMinAgeInputText" styleClass="error" id="pMinAgeMessage" />
+                        <h:message for="pMaxAgeInputText" styleClass="error" id="pMaxAgeMessage" />
+
+                    <div class="button-wrapper">
+                        <h:commandButton class="button" value="Save your preferred info"  action="#{profileHandlerBean.updateProfile}" />
+                    </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

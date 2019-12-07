@@ -1,0 +1,58 @@
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/detailsLayout.xhtml">
+            <ui:define name="page-title">Your Info</ui:define>
+            <ui:define name="detailsFields">
+                <div class="info-wrapper">
+                    <h:panelGrid columns="1">
+                        <h:inputText id="nameInputText" required="true" requiredMessage="Please enter name" value="#{profileHandlerBean.name}" maxlength="50" a:placeholder="Your Name" />
+                        <h:inputTextarea id="descriptionInputText" rows="5" cols="20" required="true" requiredMessage="Please enter description" value="#{profileHandlerBean.description}" a:maxlength="2000" a:placeholder="Enter short summary" />
+                        <h:inputText id="dobInputText" required="true" class="dobInputText" requiredMessage="Please enter date of birth dd.mm.yyyy" value="#{profileHandlerBean.dateofbirth}" maxlength="30" a:placeholder="Date of birth"  validator="#{profileHandlerBean.validateDateOfBirth}" validatorMessage="Please Enter valid birthday" />
+                        
+                            <div jsf:id="header-and-input-wrapper-gender" class="header-and-input-wrapper">
+                                <h:outputText value="Your gender: "/>
+                                <h:selectOneRadio id="genderRadio" value="#{profileHandlerBean.gender}" required="true" requiredMessage="Please select your gender" >
+                                    <f:selectItem itemValue="male" itemLabel="Male" />
+                                    <f:selectItem itemValue="female" itemLabel="Female" />
+                                    <f:selectItem itemValue="other" itemLabel="Other" />
+                                </h:selectOneRadio>
+                            </div>
+                        
+                        <h:inputText id="locationInputText" class="yourinfo-location" a:placeholder="Enter your city" />
+                        
+                        <div jsf:id="header-and-input-wrapper-smoking" class="header-and-input-wrapper">
+                            <h:outputText value="Are you smoking? "/>
+                            <h:selectOneRadio id="smokingRadio" value="#{profileHandlerBean.smoking}" required="true" requiredMessage="Please state whether you are smoking" >
+                                <f:selectItem itemValue="yes" itemLabel="Yes" />
+                                <f:selectItem itemValue="no" itemLabel="No" />
+                                <f:selectItem itemValue="occasionally" itemLabel="Occasionally" />
+                                <f:selectItem itemValue="rarely" itemLabel="Rarely" />
+                            </h:selectOneRadio>
+                        </div>
+                        
+                    </h:panelGrid>
+
+                    <h:inputText id="locationInputLgn" class="yourinfo-location-lng" required="true" requiredMessage="Please enter your city" value="#{profileHandlerBean.locationLng}"  />
+                    <h:inputText class="yourinfo-location-lat" value="#{profileHandlerBean.locationLat}"  />
+                    <h:inputText class="yourinfo-location-name" value="#{profileHandlerBean.locationName}" />
+                    <h:inputText class="yourinfo-location-country" value="#{profileHandlerBean.locationCountry}" />
+
+                    <h:message for="nameInputText" styleClass="error" id="nameMessage" />
+                    <h:message for="descriptionInputText" styleClass="error" id="descriptionMessage" />
+                    <h:message for="dobInputText" styleClass="error" id="dobMessage" />
+                    <h:message for="genderRadio" styleClass="error" id="genderMessage" />
+                    <h:message for="locationInputLgn" styleClass="error" id="locationMessage" />
+                    <h:message for="smokingRadio" styleClass="error" id="smokingMessage" />
+                        
+                    <div class="button-wrapper">
+                        <h:commandButton class="button" value="Save your info"  action="#{profileHandlerBean.updateProfile}" />
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

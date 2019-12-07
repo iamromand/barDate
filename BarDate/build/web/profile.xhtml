@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedInFullyLayout.xhtml">
+            <ui:define name="page-title">Profile</ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid class="table-all-info range-container" columns="1">
+                        
+                        <f:event listener="#{profileHandlerBean.validateAges}" type="postValidate" />
+
+                        <h2>Your Info</h2>
+                        
+                        <h:inputText id="nameInputText" required="true" requiredMessage="Please enter name" value="#{profileHandlerBean.name}" maxlength="50" a:placeholder="Enter name" />
+                        <h:inputTextarea id="descriptionInputText" rows="5" cols="20" required="true" requiredMessage="Please enter description" value="#{profileHandlerBean.description}" a:maxlength="2000" a:placeholder="Enter short summary" />
+                        <h:inputText id="dobInputText" required="true" class="dobInputText" requiredMessage="Please enter date of birth dd.mm.yyyy" value="#{profileHandlerBean.dateofbirth}" maxlength="30" a:placeholder="Enter date of birth" />
+                        
+                        <h:selectOneRadio id="genderRadio" value="#{profileHandlerBean.gender}" required="true" requiredMessage="Please select your gender" >
+                            <f:selectItem itemValue="male" itemLabel="Male" />
+                            <f:selectItem itemValue="female" itemLabel="Female" />
+                            <f:selectItem itemValue="other" itemLabel="Other" />
+                        </h:selectOneRadio>
+                        
+                        <h:panelGroup>
+                            <h:outputText value="Where do you live? " />
+                            <input id="locationInputText" class="yourinfo-location" placeholder="Enter your city" />
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                        <h:outputText value="Are you smoking? "/>
+                        <h:selectOneRadio id="smokingRadio" value="#{profileHandlerBean.smoking}" required="true" requiredMessage="Please state whether you are smoking" >
+                            <f:selectItem itemValue="yes" itemLabel="Yes" />
+                            <f:selectItem itemValue="no" itemLabel="No" />
+                            <f:selectItem itemValue="occasionally" itemLabel="Occasionally" />
+                            <f:selectItem itemValue="rarely" itemLabel="Rarely" />
+                        </h:selectOneRadio>
+                        </h:panelGroup>
+                        
+                        <h2>Your preferences</h2>
+                        
+                        <h:selectManyCheckbox id="pGenderInputeText" value="#{profileHandlerBean.pgender}" required="true" requiredMessage="Please select genders you prefer">
+                            <f:selectItems  value="#{profileHandlerBean.listOfGenders.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                        </h:selectManyCheckbox>
+                        
+                                                                        
+
+                        <h:panelGroup>
+                        <h:outputText value="Who would you rather date? " />
+                        <h:selectOneRadio id="pSmokingInputText" value="#{profileHandlerBean.psmoking}" required="true" requiredMessage="Please state your preference in regards of smoking">
+                            <f:selectItem itemValue="smoking" itemLabel="Smoking" />
+                            <f:selectItem itemValue="nonsmoking" itemLabel="Non Smoking" />
+                            <f:selectItem itemValue="both" itemLabel="Both" />
+                        </h:selectOneRadio>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                        <h:outputText value="Maximum Distance (in km)" />
+                        <div>
+                            <input type="range" name="max-radius-range" min="5" max="200" step="5" value="#{profileHandlerBean.pmaxradius}" class="range-input-max-radius-in-profile-view" />
+                            <output for="max-radius-range" class="for-range" onforminput="value = foo.valueAsNumber;" />
+                        </div>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                            <h:outputText value="Age Range" />
+                            <h:panelGroup style="display: block;">
+                                <h:selectOneMenu id="pMinAgeInputText" value = "#{profileHandlerBean.pminage}" class="select-min-age-in-profile-view"> 
+                                    <f:selectItems  value="#{profileHandlerBean.listOfAges.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                                </h:selectOneMenu> 
+-
+                                <h:selectOneMenu id="pMaxAgeInputText" value = "#{profileHandlerBean.pmaxage}" class="select-max-age-in-profile-view"> 
+                                    <f:selectItems  value="#{profileHandlerBean.listOfAges.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                                </h:selectOneMenu> 
+                            </h:panelGroup>
+                        </h:panelGroup>
+
+                        <h:panelGroup>
+                        <h:inputText id="locationInputLgn" class="yourinfo-location-lng" required="true" requiredMessage="Please enter your city" value="#{profileHandlerBean.locationLng}"  />
+                        <h:inputText class="yourinfo-location-lat" value="#{profileHandlerBean.locationLat}"  />
+                        <h:inputText class="yourinfo-location-name" value="#{profileHandlerBean.locationName}" />
+                        <h:inputText class="yourinfo-location-country" value="#{profileHandlerBean.locationCountry}" />
+                        <h:inputText id="pMaxRadiusInputText" required="true" requiredMessage="Please select maximum radius" value="#{profileHandlerBean.pmaxradius}" class="input-max-radius-in-profile-view" />
+                        </h:panelGroup>
+                        
+                        
+                        <h:message for="nameInputText" styleClass="error" id="nameMessage" />
+                        <h:message for="descriptionInputText" styleClass="error" id="descriptionMessage" />
+                        <h:message for="dobInputText" styleClass="error" id="dobMessage" />
+                        <h:message for="genderRadio" styleClass="error" id="genderMessage" />
+                        <h:message for="locationInputLgn" styleClass="error" id="locationMessage" />
+                        <h:message for="smokingRadio" styleClass="error" id="smokingMessage" />
+                        <h:message for="pGenderInputeText" styleClass="error" id="pGenderMessage" />
+                        <h:message for="pSmokingInputText" styleClass="error" id="pSmokingMessage" />
+                        <h:message for="pMaxRadiusInputText" styleClass="error" id="pMaxRadiusMessage" />
+                        <h:message for="pMinAgeInputText" styleClass="error" id="pMinAgeMessage" />
+                        <h:message for="pMaxAgeInputText" styleClass="error" id="pMaxAgeMessage" />
+
+                        
+                    </h:panelGrid>
+                    
+                    
+                    <div class="button-wrapper">
+                        <h:commandButton value="Save and return"  action="#{profileHandlerBean.updateProfile}" class="button"/>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

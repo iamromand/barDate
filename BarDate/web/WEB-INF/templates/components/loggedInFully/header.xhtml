@@ -1,0 +1,18 @@
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition>
+            <header class="top-header">
+                <div class="logo-container"><h:outputLink value="index.xhtml"><img class="logo-actual" src="resources/images/logo.png" /></h:outputLink></div>
+                <nav>
+                    <ui:insert name="nav-header">
+                        <div class="form-top-navigation">
+                            <h:outputLink class="button top-search-button" value="search.xhtml">Search</h:outputLink>
+                            <h:outputLink class="button top-liked-button" value="likedPeople.xhtml">Liked</h:outputLink>
+                        </div>
+                    </ui:insert>
+                </nav>
+            </header>
+        </ui:composition>
+    </body>
+</html>

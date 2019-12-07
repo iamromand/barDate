@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedInFullyLayout.xhtml">
+            <ui:define name="page-title">Chat</ui:define>
+            <ui:define name="content">
+                <h:panelGroup id="chat-with-person">
+                    <c:choose>
+                        <c:when test="${(not empty param.pid) and (chatManager.allowed(param.pid))}">
+                            <h:form>
+                            <c:forEach var="message" items="#{chatManager.getMessages(param.pid)}">
+                                <div class="message #{message.side}"><div class="messageActual">#{message.message}</div><div class="messageTime">#{message.ago()}</div></div>
+                            </c:forEach>
+                            
+                                <h:inputText id="nameInputText" required="true" requiredMessage="Please enter message" value="#{chatManager.actualMessage}" maxlength="200" a:placeholder="Message" />
+                                <div class="button-wrapper">
+                                    <h:commandButton action="#{chatManager.sendMessage}" value="Send" class="button">
+                                        <f:param name="pid" value="#{param.pid}"></f:param>
+                                        <f:ajax execute="@all" render="chat-with-person" />
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+        
+                        </c:when>
+                        <c:otherwise>
+                            You should choose who to chat with. Please go back to the <h:outputLink value="search.xhtml">search</h:outputLink> or <h:outputLink value="liked.xhtml">Find a person to chat with</h:outputLink>.
+                        </c:otherwise>
+                    </c:choose>
+                    <h:outputLink class="backButton" value="dashboard.xhtml">Back to dashboard</h:outputLink><br />
+                </h:panelGroup>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

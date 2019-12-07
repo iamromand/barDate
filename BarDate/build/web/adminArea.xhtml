@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedInFullyLayout.xhtml">
+            <ui:define name="page-title">Admin Area</ui:define>
+            <ui:define name="content">
+                <h1>Welcome to Admin area</h1>
+                <div class="admin-stats">
+                    Number of users: #{adminBean.getNumberOfUsers()}<br />
+                    Number of profiles: #{adminBean.getNumberOfProfiles()}<br />
+                    Number of likes:  #{adminBean.getNumberOfLikes()}<br />
+                    Number of messages:  #{adminBean.getNumberOfMessages()}<br />
+                </div>
+                <h2>Reports</h2>
+                    <c:forEach var="reportedPerson" items="#{adminBean.seeReports()}">
+                        <div class="user-and-admin-action">
+                            <div class="user-in-admin">User: ${reportedPerson.get(0)}</div>
+                            <div class="number-of-reports-admin">Number Of Reports: ${reportedPerson.get(1)}</div>
+                            <div class="admin-action-view"><h:outputLink target="_blank" value="search.xhtml?pid=${reportedPerson.get(0)}">View User</h:outputLink></div>
+                            <div class="admin-action-remove"><h:form><h:commandButton action="#{adminBean.deleteUser(reportedPerson.get(0))}" value="Delete" id="delete-#{reportedPerson.get(0)}" /></h:form></div>
+                        </div>
+                    </c:forEach>
+                <h:outputLink class="backButton" value="dashboard.xhtml">Back to dashboard</h:outputLink><br />
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

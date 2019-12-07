@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedInFullyLayout.xhtml">
+            <ui:define name="page-title">Profile Image</ui:define>
+            <ui:define name="content">
+                <c:choose>
+                    <c:when test="${not empty profileHandlerBean.profileImage}">
+                        <div class="img-container" style="background-image: url('#{request.contextPath}/#{profileHandlerBean.getProfileImage()}')"></div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="img-container" style="background-image: url('#{request.contextPath}/#{profileHandlerBean.getDefaultImage()}')"></div>
+                    </c:otherwise>
+                </c:choose>
+                <h:form class="uploadImageForm" enctype="multipart/form-data">
+                    <h:inputFile value="#{profileHandlerBean.imageFile}">
+                        <f:ajax listener="#{profileHandlerBean.saveImage}" />
+                    </h:inputFile>
+                </h:form>
+                <h:outputLink class="backButton" value="dashboard.xhtml">Back To Dashboard</h:outputLink><br />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

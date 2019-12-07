@@ -1,0 +1,36 @@
+<html
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/WEB-INF/templates/loggedOutLayout.xhtml">
+        <ui:define name="page-title">Register</ui:define>
+        <ui:define name="content">
+            <div class="login-wrapper">
+                <h:form id="registerForm">
+                <h:panelGrid columns="1">
+                    <h:inputText id="emailInputText" required="true" validator="#{userInfoBean.validateEmail}" requiredMessage="Please enter email" value="#{userInfoBean.email}" maxlength="100"  a:placeholder="Email" validatorMessage="Invalid email format"><f:validateRegex pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" /></h:inputText>
+                    <p:password id="passwordInputText" required="true" requiredMessage="Please enter password" value="#{userInfoBean.password}" maxlength="100" a:placeholder="Password" match="repeatedPassword" />
+                    <p:password id="repeatedPassword" required="true" requiredMessage="Please enter password again" value="#{userInfoBean.password}" maxlength="100" a:placeholder="Repeat password" />
+                    <h:inputText id="phoneInputText" required="true" requiredMessage="Please enter phone (format: 050-0000000)" value="#{userInfoBean.phone}" maxlength="100"  a:placeholder="Phone" validatorMessage="Phone must be corrent"><f:validateRegex pattern="[0]\d{1,2}-\d{7}" /></h:inputText>
+                </h:panelGrid>
+
+                <h:message for="emailInputText" styleClass="error" id="emailMessage" />
+                <h:message for="passwordInputText" styleClass="error" id="passwordMessage" />
+                <h:message for="repeatedPassword" styleClass="error" id="verifyPasswordMessage" />
+                <h:message for="phoneInputText" styleClass="error" id="phoneMessage" />
+
+                <div class="button-wrapper">
+                    <h:commandButton type="submit" class="button" value="Register" action="#{userInfoBean.register}">
+                        <f:ajax
+                            execute="@form"
+                            render ="passwordMessage verifyPasswordMessage emailMessage phoneMessage" />
+                    </h:commandButton>
+                </div>
+            </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+        

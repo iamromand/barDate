@@ -1,0 +1,648 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 01/01/2019, 15:24:20
+    Author     : danielle
+*/
+
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+html {
+  box-sizing: border-box;
+  font-family: 'Roboto';
+}
+body{
+    background: #ffffeb;
+    font-size: 26px;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a{
+    color: inherit;
+    text-align: center;
+}
+.top-header{
+    width: 100%;
+    background: #00449c;
+    padding: 30px;
+    text-align: right;
+    box-shadow: 1px 1px 1px #eee;
+    position: relative;
+}
+.home-wrapper{
+    font-size: 32px;
+}
+.home .full-background{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    top: 90px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.home .full-background .image-low{
+    position: absolute;
+    top: -250px;
+}
+.home .full-background .image-very-low{
+    position: absolute;
+    top: -400px;
+}
+
+.slick-arrow{
+    display: none !important;
+}
+.home .full-background img{
+    opacity: 0.1 !important;
+    width: 100%;
+}
+
+.home .full-background > div{
+    background: white;
+}
+
+.home-wrapper .button-wrapper{
+    position: absolute;
+    bottom: 15vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.button-wrapper .button{
+    padding: 20px 60px;
+    border-radius: 45px;
+    text-decoration: none;
+    color: white;
+    background: green;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.home .form-register-login .register-button.button{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e20202+0,c66b6b+100 */
+    background: #e20202; /* Old browsers */
+    background: -moz-linear-gradient(left, #e20202 0%, #c66b6b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e20202 0%,#c66b6b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e20202 0%,#c66b6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e20202', endColorstr='#c66b6b',GradientType=1 ); /* IE6-9 */
+    transition: all 2s;
+}
+.home .form-register-login .register-button.button:hover{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#820101+0,663838+100 */
+    background: #820101; /* Old browsers */
+    background: -moz-linear-gradient(left, #820101 0%, #663838 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #820101 0%,#663838 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #820101 0%,#663838 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#820101', endColorstr='#663838',GradientType=1 ); /* IE6-9 */
+}
+.home .quote{
+    position: absolute;
+    bottom: 35vh;
+    max-width: 500px;
+    left: 0;
+    right: 0;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.home .quote .quote-text{
+    font-style: italic;
+    margin-bottom: 40px;
+}
+.home .quote .quote-author{
+    text-align: right;
+}
+
+.home .welcome{
+    text-align: center;
+    margin-top: 40px;
+}
+.logo-container{
+    position: absolute;
+    left: 30px;
+    top: 10px;
+}
+.logo-actual{
+    height: 70px;
+    width: auto;
+}
+
+.form-top-navigation a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.form-top-navigation a:after{
+    content: "|";
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.form-top-navigation a:last-of-type:after{
+    content: "";
+}
+
+.input-max-radius-in-profile-view{
+    display: none;
+}
+.range-container td{
+    position: relative;
+}
+output.for-range { 
+  position: absolute;
+  background: red;
+  width: 40px; 
+  height: 30px; 
+  text-align: center; 
+  color: white; 
+  border-radius: 10px; 
+  display: inline-block; 
+  font: bold 15px/30px Georgia;
+  bottom: -19%;
+  left: 0;
+  margin-left: -1%;
+}
+.preferredInfo output.for-range{
+    bottom: -60%;
+}
+output.for-range:after { 
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid red;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    top: -31%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -1px;
+}
+.yourinfo-location-lng,
+.yourinfo-location-lat,
+.yourinfo-location-name,
+.yourinfo-location-country{
+    display: none;
+}
+
+.hellobars{
+    position: fixed;
+    background: green;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+
+.hellobar{
+    display: block;
+}
+.hellobar-close{
+    display: inline;
+    float: right;
+}
+.hello-bar-content{
+    padding-right: 20px;
+    display: inline;
+}
+.hellobar.messagesbar{
+    background: red;
+}
+h1{
+    font-weight: bold;
+    text-align: center;
+    font-size: 120%;
+    font-family: 'Roboto';
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#content{
+    padding: 20px;
+}
+a{
+    transition: all 0.5s;
+}
+.yourinfo-location.ap-input,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"]
+{
+    max-width: 250px !important;
+    width: 100% !important;
+    font-size: 1.3rem !important;
+    padding: 5px 6px !important;
+    box-shadow: none !important;
+    outline: none;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid #00449c;
+    padding-bottom: 2px !important;
+    padding-left: 6px !important;
+    text-align: center !important;
+}
+textarea{
+    border: 2px solid #00449c;
+}
+.button-wrapper{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+input[type="submit"]{
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 40px !important;
+    transition: all 0.5s;
+    outline: none;
+}
+a:hover,
+input[type="submit"]:hover{
+    color: #e492dd !important;
+    cursor: pointer;
+}
+table{
+    margin: 0 auto;
+    text-align: center;
+}
+table tr td{
+    vertical-align: bottom;    
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.error{
+    color: red;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.error:empty{
+    display: none;
+}
+
+.login-wrapper{
+    padding-top: 9vw;
+}
+.info-wrapper table tr td,
+.register-wrapper table tr td,
+.login-wrapper table tr td{
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background: #00449c;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+a.ui-datepicker-prev.ui-corner-all {
+    flex-basis: 40%;
+    color: white;
+}
+
+a.ui-datepicker-next.ui-corner-all {
+    flex-basis: 40%;
+    color: white;
+}
+
+.ui-datepicker-title {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+select.ui-datepicker-month {
+    border-radius: 10px;
+    background: #eeeeee90;
+    border: 0;
+}
+
+select.ui-datepicker-year {
+    border-radius: 10px;
+    background: #eeeeee90;
+    border: 0;
+}
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background: #00449c;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+a.ui-datepicker-prev.ui-corner-all {
+    flex-basis: 40%;
+    color: white;
+}
+
+a.ui-datepicker-next.ui-corner-all {
+    flex-basis: 40%;
+    color: white;
+}
+
+.ui-datepicker-title {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+select.ui-datepicker-month {
+    border-radius: 10px;
+    background: #eeeeee90;
+    border: 0;
+}
+
+select.ui-datepicker-year {
+    border-radius: 10px;
+    background: #eeeeee90;
+    border: 0;
+}
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background: #00449c;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+a.ui-datepicker-next.ui-corner-all,
+a.ui-datepicker-prev.ui-corner-all {
+    flex-basis: 40%;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: white;
+}
+
+.ui-datepicker-title {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+select.ui-datepicker-month {
+    border-radius: 10px;
+    background: #eeeeee90;
+    border: 0;
+}
+
+select.ui-datepicker-year {
+    border-radius: 10px;
+    background: #eeeeee90;
+    border: 0;
+}
+a.ui-state-default {
+    text-decoration: none;
+    padding: 3px;
+}
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon,
+span.ui-icon.ui-icon-circle-triangle-e,
+span.ui-icon.ui-icon-circle-triangle-w {
+    background-image: none !important;
+}
+.ui-datepicker-calendar th {
+    font-size: 70%;
+}
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    padding-left:7px;
+    padding-right:7px;
+    transition: all 0.5s;
+}
+
+input[type="checkbox"] + label:hover,
+input[type="radio"] + label:hover {
+    color:#e492dd;
+}
+
+
+input[type="checkbox"]:checked + label,
+input[type="radio"]:checked + label {
+    color: green;
+    text-decoration: underline;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: none;
+}
+
+.img-container{
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.uploadImageForm{
+    text-align: center;
+}
+
+.backButton{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    text-decoration: none;
+    background: #ffffeb;
+    padding: 10px;
+    box-shadow: 3px 3px 20px #aaa,-3px 3px 20px #aaa,3px -3px 20px #aaa,-3px -3px #aaa;
+}
+.no-param.search .person-l{
+    display: none;
+}
+.likedPeople .person-notl{
+    display: none;
+}
+.dashboard-items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.dashboard-item{
+    flex-basis: 250px;
+    width: 250px;
+    height: 250px;
+    border: 4px solid blue;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.5s all;
+    position: relative;
+    padding-top: 100px;
+
+}
+
+.dashboard-item:hover {
+    background: #dee6f1;
+    cursor: pointer;
+}
+.dashboard-items a{
+    display: block;
+    text-decoration: none;
+}
+.dashboard-items a:hover{
+    color: black !important;
+}
+.dashboard-item i{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 30px;
+    font-size: 60px;
+}
+.person-box {
+    width: 320px;
+    border: 4px dashed #eee;
+    padding: 12px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.person-box.person-new-messages {
+    border-color: red;
+}
+.person-box .more-info{
+    display: none;
+}
+.person-box.person-reported{
+    display: none;
+}
+.person-box .gender-image{
+    width: 30px;
+}
+.person-box .button{
+    display: block;
+    margin: 0 auto;
+    padding: 10px !important;
+}
+.person-box .like-button {
+    background: #d80000;
+    margin-bottom: 5px;
+    width: 100%;
+}
+.person-box .chat-button {
+    background: #8f8f00;
+    margin-bottom: 5px;
+}
+.person-box .profile-button {
+    background: green;
+    margin-bottom: 5px;
+}
+.person-box .report-button {
+    background: black;
+    width: 100%;
+}
+.param-pid.search .more-info{
+    display: block;
+}
+
+.param-pid.search .action-buttons{
+    display: none;
+}
+.param-pid.search .img-container{
+    width: 500px;
+    height: 500px;
+    max-height: 90vw;
+}
+.param-pid.search .person-box{
+    width: 550px;
+    max-width: 100%;
+}
+.range-input-max-radius-in-profile-view{
+    width: 100%;
+}
+
+.table-all-info h2{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.table-all-info td{
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.table-all-info .empty-container td{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.chat .message {
+    background: white;
+    width: 300px;
+    border: 2px solid red;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.chat .message.self {
+    border-color: black;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.chat input[type="text"]{
+    max-width: 100% !important;
+    display: block;
+}
+.adminArea h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.adminArea .user-and-admin-action{
+    border: 2px dashed black;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+.adminArea h1,
+.adminArea h2,
+.adminArea .admin-stats{
+    text-align: center;
+}
+
+@media screen and (max-width: 1023px) {
+    .home .full-background img{
+        top: 0 !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    .home .full-background{
+        left: calc((100vw - 600px)/2);
+        min-width: 600px;
+        right: 0;
+        margin: auto;
+    }    
+    .home{
+        font-size: 18px;
+    }
+}
+@media screen and (max-height: 750px) {
+    .home .button-wrapper {
+        bottom: 7vh;
+    }
+    .home .quote{
+        bottom: 32vw;
+    }
+}

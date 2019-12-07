@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <c:choose>
+            <c:when test="${not empty person }">
+                <c:if test="#{searchResults.isLiked(person.personid)!='Like'}"><c:set var="likeClass" value="person-l" /></c:if>
+                <c:if test="#{searchResults.isLiked(person.personid)=='Like'}"><c:set var="likeClass" value="person-notl" /></c:if>
+                <c:if test="#{searchResults.isReported(person.personid)=='Reported'}"><c:set var="reportedClass" value="person-reported" /></c:if>
+                <c:if test="#{searchResults.isNewMessages(person.personid)}"><c:set var="messagesClass" value="person-new-messages" /></c:if>
+                <h:form class="${likeClass} ${reportedClass} ${messagesClass} person-box">
+                    <h:panelGroup class="person" id="person-#{person.personid}">
+                        <div class="field"><div class="img-container" style="background-image: url('#{request.contextPath}/#{person.profile_image}')"></div></div>
+                        <c:if test="${person.gender == 'male'}"><c:set var="genderimage" value="resources/images/gender-male.png" /></c:if>
+                        <c:if test="${person.gender == 'female'}"><c:set var="genderimage" value="resources/images/gender-female.png" /></c:if>
+                        <c:if test="${person.gender == 'other'}"><c:set var="genderimage" value="resources/images/gender-other.png" /></c:if>
+                        <div class="field">#{person.name},  #{person.age} <img class="gender-image" src="${genderimage}" /></div>
+                        <div class="more-info">
+                            <div class="field">City: #{person.loc_name}      </div>
+                            <div class="field">Is Smoking: #{person.smoking}      </div>
+                            <br /><div class="field">Description:<br />#{person.description}      </div>
+                        </div>
+                        <div class="action-buttons button-wrapper">
+                            <h:commandButton action="#{searchResults.likeUnlike(person.personid)}" value="#{searchResults.isLiked(person.personid)}" id="like-#{person.personid}"  class="button like-button">
+                                <f:ajax render="like-#{person.personid} chat-#{person.personid}" />
+                            </h:commandButton>
+                            <h:panelGroup id="chat-#{person.personid}">
+                                <ui:fragment rendered="#{searchResults.isLiked(person.personid)=='Mutual Like'}">
+                                    <h:outputLink target="_blank" value="chat.xhtml?pid=#{person.personid}" class="button chat-button">#{searchResults.chatString(person.personid)}</h:outputLink>
+                                </ui:fragment>
+                            </h:panelGroup>
+                            <h:outputLink target="_blank" value="search.xhtml?pid=#{person.personid}" class="button profile-button">View full profile</h:outputLink>
+                            <h:commandButton action="#{searchResults.report(person.personid)}" value="#{searchResults.isReported(person.personid)}" id="report-#{person.personid}" class="button report-button">
+                                <f:ajax render="report-#{person.personid}" onevent="function(data) { removeReported(data, #{person.personid}) }" />
+                            </h:commandButton>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                Person does not exists
+            </c:otherwise>
+        </c:choose>
+    </h:body>
+</html>

@@ -1,0 +1,35 @@
+<html
+    xmlns="https://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:body>
+        <ui:composition template="/WEB-INF/templates/loggedOutLayout.xhtml">
+            <ui:define name="page-title">BarDate</ui:define>
+            <ui:define name="content">
+                <div class="home-wrapper">
+                    <div class="full-background">
+                        <div class="background-holder"><img src="resources/images/happycouple5.jpg" class="image-very-low"/></div>
+                        <div class="background-holder"><img src="resources/images/happycouple6.jpg" /></div>
+                        <div class="background-holder"><img src="resources/images/happycouple7.jpg" class="image-very-low"/></div>
+                        <div class="background-holder"><img src="resources/images/happycouple8.jpg" class="image-low" /></div>
+                        <div class="background-holder"><img src="resources/images/happycouple9.jpg" class="image-very-low" /></div>
+                    </div>
+                    <div class="welcome">
+                        <h1>Welcome to BarDate!<br /><br />A dating site designed around local communities - just like meeting at your local bar!</h1>
+                    </div>
+                    <div class="quote">
+                        <div class="quote-text">Laughter is timeless, imagination has no age, and dreams are forever.</div>
+                        <div class="quote-author">- Walt Disney</div>
+                    </div>
+                    <div class="button-wrapper">
+                        <h:link class="button" value="Register" outcome="register" />
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </h:body>
+</html>

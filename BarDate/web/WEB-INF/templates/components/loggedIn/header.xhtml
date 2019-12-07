@@ -1,0 +1,17 @@
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition>
+            <header class="top-header">
+                <div class="logo-container"><h:outputLink value="index.xhtml"><img class="logo-actual" src="resources/images/logo.png" /></h:outputLink></div>
+                <nav>
+                    <ui:insert name="nav-header">
+                        <h:form class="form-top-navigation">
+                            <h:commandLink class="button top-profile-button" value="Logout" action="#{userInfoBean.disconnect}" />
+                        </h:form>
+                    </ui:insert>
+                </nav>
+            </header>
+        </ui:composition>
+    </body>
+</html>
